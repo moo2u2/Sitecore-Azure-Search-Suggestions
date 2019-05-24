@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.HabitatHome.Foundation.Search", "Foundation\Search\code\Sitecore.HabitatHome.Foundation.Search.csproj", "{727F7DB4-4C95-476A-8B62-6AF3FF8B2739}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Foundation", "Foundation", "{ABF6323D-60F8-49DF-AF74-4E09E750BC4D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Search", "Search", "{AAF0BAA5-BC4F-4C8A-A259-75F761F2C781}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Feature", "Feature", "{37929C00-D0BB-4D2F-81C6-F109DFC67878}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Search", "Search", "{67A668DB-F512-4301-8886-F2E3C9642E56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.HabitatHome.Feature.Search", "Feature\Search\code\Sitecore.HabitatHome.Feature.Search.csproj", "{1B6131E5-3566-4885-A818-1287046C1696}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{727F7DB4-4C95-476A-8B62-6AF3FF8B2739}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{727F7DB4-4C95-476A-8B62-6AF3FF8B2739}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{727F7DB4-4C95-476A-8B62-6AF3FF8B2739}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{727F7DB4-4C95-476A-8B62-6AF3FF8B2739}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B6131E5-3566-4885-A818-1287046C1696}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B6131E5-3566-4885-A818-1287046C1696}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B6131E5-3566-4885-A818-1287046C1696}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B6131E5-3566-4885-A818-1287046C1696}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{727F7DB4-4C95-476A-8B62-6AF3FF8B2739} = {AAF0BAA5-BC4F-4C8A-A259-75F761F2C781}
+		{AAF0BAA5-BC4F-4C8A-A259-75F761F2C781} = {ABF6323D-60F8-49DF-AF74-4E09E750BC4D}
+		{67A668DB-F512-4301-8886-F2E3C9642E56} = {37929C00-D0BB-4D2F-81C6-F109DFC67878}
+		{1B6131E5-3566-4885-A818-1287046C1696} = {67A668DB-F512-4301-8886-F2E3C9642E56}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C01E20F1-42AB-4CBF-813B-762F38AA0E0C}
+	EndGlobalSection
+EndGlobal
