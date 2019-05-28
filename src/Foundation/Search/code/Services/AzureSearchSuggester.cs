@@ -5,8 +5,8 @@ using Sitecore.XA.Foundation.Search.Services;
 using System.Collections.Generic;
 using System.Linq;
 using Sitecore.ContentSearch.Security;
-using Microsoft.Azure.Search.Models;
 using Newtonsoft.Json;
+using Sitecore.HabitatHome.Foundation.Search.Models;
 
 namespace Sitecore.HabitatHome.Foundation.Search.Services
 {
@@ -34,18 +34,18 @@ namespace Sitecore.HabitatHome.Foundation.Search.Services
             searchIndex.Initialize();
             using (IProviderSearchContext searchContext = searchIndex.CreateSearchContext(SearchSecurityOptions.Default))
             {
-                SuggestParameters sp = new SuggestParameters() { UseFuzzyMatching = fuzzy, Top = 5 };
-                if (highlights)
-                {
-                    string tag = Configuration.Settings.GetSetting("AzureSearchSuggesterHighlightTag");
-                    sp.HighlightPreTag = $"<{tag}>";
-                    sp.HighlightPostTag = $"</{tag}>";
-                }
-
-                AzureSuggestQuery term = model.Term;
+                string tag = highlights ? Configuration.Settings.GetSetting("AzureSearchSuggesterHighlightTag") : null;
                 DocumentSuggestResult<Document> handlerQueryResults;
                 using (queryTimer = new XA.Foundation.Search.Timer())
-                    handlerQueryResults = searchContext.Suggest(term, Configuration.Settings.GetSetting("AzureSearchSuggesterName"), sp);
+                    handlerQueryResults = searchContext.Suggest(new SuggestionRequest {
+                        Search = model.Term,
+                        SuggesterName = Configuration.Settings.GetSetting("AzureSearchSuggesterName"),
+                        Fuzzy = fuzzy,
+                        Top = 5,
+                        HighlightPreTag = highlights ? $"<{tag}>" : null,
+                        HighlightPostTag = highlights ? $"</{tag}>" : null,
+                        Select = "*"
+                    });
                 return handlerQueryResults.Results.Select(a => new Suggestion()
                 {
                     Term = a.Text,

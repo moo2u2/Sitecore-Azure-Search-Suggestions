@@ -62,9 +62,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.Search">
-      <Version>9.0.1</Version>
-    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>
     </PackageReference>
@@ -87,8 +84,18 @@
     <Compile Include="Exceptions\CloudSearchCompositeSearchServiceException.cs" />
     <Compile Include="Exceptions\CloudSearchMissingImplementationException.cs" />
     <Compile Include="Http\AzureNetProxy.cs" />
+    <Compile Include="Http\QueryStringFormatter.cs" />
+    <Compile Include="Http\SearchUrl.cs" />
+    <Compile Include="Models\AutocompleteItem.cs" />
+    <Compile Include="Models\AutocompleteRequest.cs" />
+    <Compile Include="Models\AutocompleteResult.cs" />
+    <Compile Include="Models\Document.cs" />
+    <Compile Include="Models\DocumentSuggestResult.cs" />
+    <Compile Include="Models\SuggestionRequest.cs" />
+    <Compile Include="Models\SuggestResult.cs" />
+    <Compile Include="Serialization\DocumentConverter.cs" />
+    <Compile Include="Serialization\SuggestResultConverter.cs" />
     <Compile Include="Services\AzureSearchSuggester.cs" />
-    <Compile Include="AzureSuggestQuery.cs" />
     <Compile Include="Exceptions\AzureSearchServiceRESTCallException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="Exceptions\PostFailedForSomeDocumentsException.cs" />

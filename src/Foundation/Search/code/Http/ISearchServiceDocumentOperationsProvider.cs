@@ -1,11 +1,11 @@
-﻿using Microsoft.Azure.Search.Models;
+﻿using Sitecore.HabitatHome.Foundation.Search.Models;
 
 namespace Sitecore.HabitatHome.Foundation.Search
 {
     public interface ISearchServiceDocumentOperationsProvider : ContentSearch.Azure.Http.ISearchServiceDocumentOperationsProvider
     {
-        DocumentSuggestResult<Document> Suggest(AzureSuggestQuery q, string something, SuggestParameters options);
+        DocumentSuggestResult<Document> Suggest(SuggestionRequest options);
 
-        AutocompleteResult Autocomplete(AzureSuggestQuery q, string something, AutocompleteParameters options);
+        AutocompleteResult Autocomplete(AutocompleteRequest options);
     }
 }

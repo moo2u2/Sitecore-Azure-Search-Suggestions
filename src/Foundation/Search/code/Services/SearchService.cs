@@ -1,5 +1,4 @@
-﻿using Microsoft.Azure.Search.Models;
-using Sitecore.ContentSearch;
+﻿using Sitecore.ContentSearch;
 using Sitecore.ContentSearch.Azure;
 using Sitecore.ContentSearch.Azure.Config;
 using Sitecore.ContentSearch.Azure.Http;
@@ -8,6 +7,7 @@ using Sitecore.ContentSearch.Azure.Models;
 using Sitecore.ContentSearch.Azure.Schema;
 using Sitecore.ContentSearch.Diagnostics;
 using Sitecore.HabitatHome.Foundation.Search.Exceptions;
+using Sitecore.HabitatHome.Foundation.Search.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -97,16 +97,16 @@ namespace Sitecore.HabitatHome.Foundation.Search.Services
             return DocumentOperations.Search(requestParameters);
         }
 
-        public DocumentSuggestResult<Document> Suggest(AzureSuggestQuery q, string suggester, SuggestParameters options)
+        public DocumentSuggestResult<Document> Suggest(SuggestionRequest suggestionRequest)
         {
             EnsureSearchServiceAvailable();
-            return ((ISearchServiceDocumentOperationsProvider)DocumentOperations).Suggest(q, suggester, options);
+            return ((ISearchServiceDocumentOperationsProvider)DocumentOperations).Suggest(suggestionRequest);
         }
 
-        public AutocompleteResult Autocomplete(AzureSuggestQuery q, string suggester, AutocompleteParameters options)
+        public AutocompleteResult Autocomplete(AutocompleteRequest autocompleteRequest)
         {
             EnsureSearchServiceAvailable();
-            return ((ISearchServiceDocumentOperationsProvider)DocumentOperations).Autocomplete(q, suggester, options);
+            return ((ISearchServiceDocumentOperationsProvider)DocumentOperations).Autocomplete(autocompleteRequest);
         }
 
         public void Cleanup()

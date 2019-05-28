@@ -1,5 +1,4 @@
-﻿using Microsoft.Azure.Search.Models;
-using Sitecore.ContentSearch;
+﻿using Sitecore.ContentSearch;
 using Sitecore.ContentSearch.Azure;
 using Sitecore.ContentSearch.Azure.Http;
 using Sitecore.ContentSearch.Azure.Http.Model;
@@ -7,6 +6,7 @@ using Sitecore.ContentSearch.Azure.Models;
 using Sitecore.ContentSearch.Azure.Schema;
 using Sitecore.ContentSearch.Diagnostics;
 using Sitecore.HabitatHome.Foundation.Search.Exceptions;
+using Sitecore.HabitatHome.Foundation.Search.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -106,20 +106,20 @@ namespace Sitecore.HabitatHome.Foundation.Search.Services
             return null;
         }
 
-        public DocumentSuggestResult<Document> Suggest(AzureSuggestQuery q, string suggester, SuggestParameters options)
+        public DocumentSuggestResult<Document> Suggest(SuggestionRequest suggestionRequest)
         {
             ISearchService availableSearchService = GetAvailableSearchService();
             if (availableSearchService != null)
-                return ((SearchService)availableSearchService).Suggest(q, suggester, options);
+                return ((SearchService)availableSearchService).Suggest(suggestionRequest);
             SearchLog.Log.Error("Search request cannot be processed. No search services are available. Please try again later.", null);
             return null;
         }
 
-        public AutocompleteResult Autocomplete(AzureSuggestQuery q, string suggester, AutocompleteParameters options)
+        public AutocompleteResult Autocomplete(AutocompleteRequest autocompleteRequest)
         {
             ISearchService availableSearchService = GetAvailableSearchService();
             if (availableSearchService != null)
-                return ((SearchService)availableSearchService).Autocomplete(q, suggester, options);
+                return ((SearchService)availableSearchService).Autocomplete(autocompleteRequest);
             SearchLog.Log.Error("Search request cannot be processed. No search services are available. Please try again later.", null);
             return null;
         }
