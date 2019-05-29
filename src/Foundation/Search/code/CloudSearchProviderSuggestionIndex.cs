@@ -12,7 +12,7 @@ using System.Threading;
 namespace Sitecore.HabitatHome.Foundation.Search
 {
     // Pretty much straight from CloudSearchProviderIndex but SearchCloudIndexName and indexNameProvider weren't accessible
-    public class CloudSearchProviderSuggestionIndex : XA.Foundation.Search.Providers.Azure.CloudSearchProviderIndex
+    public class CloudSearchProviderSuggestionIndex : CloudSearchProviderIndex
     {
         private string _searchCloudIndexName;
         private string _rebuildCloudIndexName;

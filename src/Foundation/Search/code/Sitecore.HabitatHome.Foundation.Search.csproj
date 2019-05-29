@@ -71,9 +71,6 @@
     <PackageReference Include="Sitecore.ContentSearch" Version="9.1.1" />
     <PackageReference Include="Sitecore.ContentSearch.Azure" Version="9.1.1" />
     <PackageReference Include="Sitecore.Kernel" Version="9.1.1" />
-    <PackageReference Include="Sitecore.XA.Foundation.SitecoreExtensions" Version="4.8.1" />
-    <PackageReference Include="Sitecore.XA.Foundation.Search" Version="4.8.1" />
-    <PackageReference Include="Sitecore.XA.Foundation.Search.Providers.Azure" Version="4.8.1" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Foundation\Foundation.Search.config" />
@@ -87,6 +84,8 @@
     <Compile Include="Exceptions\CloudSearchCompositeSearchServiceException.cs" />
     <Compile Include="Exceptions\CloudSearchMissingImplementationException.cs" />
     <Compile Include="Http\AzureNetProxy.cs" />
+    <Compile Include="Models\SuggesterModel.cs" />
+    <Compile Include="Models\Suggestion.cs" />
     <Compile Include="Services\AzureSearchSuggester.cs" />
     <Compile Include="AzureSuggestQuery.cs" />
     <Compile Include="Exceptions\AzureSearchServiceRESTCallException.cs" />
@@ -102,11 +101,18 @@
     <Compile Include="Schema\CloudSearchIndexSchema.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CompositeSearchService.cs" />
+    <Compile Include="Services\IIndexResolver.cs" />
+    <Compile Include="Services\IndexResolver.cs" />
+    <Compile Include="Services\ISuggester.cs" />
     <Compile Include="Services\SearchService.cs" />
     <Compile Include="Services\AzureSearchServiceClient.cs" />
     <Compile Include="Services\SearchServiceSchemaSynchronizer.cs" />
+    <Compile Include="Timer.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Assets\Feature\Search\css\" />
+    <Folder Include="Assets\Feature\Search\js\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

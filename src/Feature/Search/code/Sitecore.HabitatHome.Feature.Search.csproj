@@ -61,17 +61,24 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.WebApi" Version="5.2.6" />
+    <PackageReference Include="Microsoft.AspNet.Mvc">
+      <Version>5.2.6</Version>
+    </PackageReference>
     <PackageReference Include="Sitecore.Kernel" Version="9.1.1" />
-    <PackageReference Include="Sitecore.XA.Feature.Search" Version="4.8.1" />
-    <PackageReference Include="Sitecore.XA.Foundation.Search" Version="4.8.1" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
+    <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\SuggestionSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Foundation\Search\code\Sitecore.HabitatHome.Foundation.Search.csproj">
+      <Project>{727f7db4-4c95-476a-8b62-6af3ff8b2739}</Project>
+      <Name>Sitecore.HabitatHome.Foundation.Search</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -22,7 +22,7 @@ namespace Sitecore.HabitatHome.Foundation.Search.Services
     {
         private const string IDFieldName = "_id";
         private CloudSearchProviderIndex _searchIndex;
-        private Timer _timer;
+        private System.Threading.Timer _timer;
         private ICloudSearchIndexSchema _schema;
 
         public event EventHandler SchemaSynced;
@@ -56,7 +56,7 @@ namespace Sitecore.HabitatHome.Foundation.Search.Services
             TimeSpan period = TimeSpan.Parse(schemaUpdateInterval, CultureInfo.InvariantCulture);
             if (!(period != TimeSpan.FromMilliseconds(-1.0)))
                 return;
-            _timer = new Timer(new TimerCallback(SyncSchema), this, TimeSpan.FromSeconds(2.0), period);
+            _timer = new System.Threading.Timer(new TimerCallback(SyncSchema), this, TimeSpan.FromSeconds(2.0), period);
         }
 
         public SearchService(ISearchServiceAvailabilityManager availabilityManager, ISearchServiceDocumentOperationsProvider documentOperations,

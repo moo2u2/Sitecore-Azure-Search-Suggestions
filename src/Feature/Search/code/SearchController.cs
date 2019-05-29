@@ -1,24 +1,74 @@
-﻿using Sitecore.XA.Feature.Search.Attributes;
-using Sitecore.XA.Feature.Search.Binder;
-using Sitecore.XA.Foundation.Search.Models;
-using Sitecore.XA.Foundation.Search.Models.Binding;
-using System.Web.Http;
-using System.Web.Http.ModelBinding;
+﻿using Sitecore.DependencyInjection;
+using System;
+using Microsoft.Extensions.DependencyInjection;
+using System.Web.Mvc;
+using Sitecore.HabitatHome.Feature.Search.Models;
+using Sitecore.HabitatHome.Foundation.Search.Services;
+using Sitecore.HabitatHome.Foundation.Search.Models;
 
 namespace Sitecore.HabitatHome.Feature.Search
 {
-    [JsonFormatter]
-    public class SearchSuggestionsController : XA.Feature.Search.Controllers.SearchController
+    // See Sitecore.XA.Feature.Search.Controllers.SearchController
+    public class SearchController : Controller
     {
-        [ActionName("SuggestionsEx")]
-        public SuggestionsSet GetSuggestionsEx([ModelBinder(BinderType = typeof(QueryModelBinder))] QueryModel model)
+        [ActionName("Suggestions")]
+        public ActionResult GetSuggestions(Guid itemID, string query)
         {
-            return SearchSuggestions(new SuggesterModel()
+            return Json(SearchSuggestions(new SuggesterModel()
             {
-                ContextItemID = model.ItemID,
-                Term = model.Query
-            });
+                ContextItemID = Data.ID.Parse(itemID),
+                Term = query
+            }), JsonRequestBehavior.AllowGet);
         }
 
+        [ActionName("Autocomplete")]
+        public ActionResult GetAutocomplete(Guid itemID, string query)
+        {
+            return Json(Autocomplete(new SuggesterModel()
+            {
+                ContextItemID = Data.ID.Parse(itemID),
+                Term = query
+            }), JsonRequestBehavior.AllowGet);
+        }
+
+        protected virtual SuggestionsSet SearchSuggestions(SuggesterModel model)
+        {
+            Foundation.Search.Timer timer;
+            SuggestionsSet suggestionsSet;
+            Foundation.Search.Timer queryTimer;
+            string indexName;
+            using (timer = new Foundation.Search.Timer())
+            {
+                suggestionsSet = new SuggestionsSet();
+                foreach (Suggestion suggestion in ServiceLocator.ServiceProvider.GetService<ISuggester>().GetSuggestions(model, out queryTimer, out indexName))
+                {
+                    suggestionsSet.Results.Add(suggestion);
+                }
+            }
+            suggestionsSet.TotalTime = timer.Msec;
+            suggestionsSet.QueryTime = queryTimer.Msec;
+            suggestionsSet.Index = indexName;
+            return suggestionsSet;
+        }
+
+        protected virtual SuggestionsSet Autocomplete(SuggesterModel model)
+        {
+            Foundation.Search.Timer timer;
+            SuggestionsSet suggestionsSet;
+            Foundation.Search.Timer queryTimer;
+            string indexName;
+            using (timer = new Foundation.Search.Timer())
+            {
+                suggestionsSet = new SuggestionsSet();
+                foreach (Suggestion suggestion in ServiceLocator.ServiceProvider.GetService<ISuggester>().GetAutocomplete(model, out queryTimer, out indexName))
+                {
+                    suggestionsSet.Results.Add(suggestion);
+                }
+            }
+            suggestionsSet.TotalTime = timer.Msec;
+            suggestionsSet.QueryTime = queryTimer.Msec;
+            suggestionsSet.Index = indexName;
+            return suggestionsSet;
+        }
     }
 }
