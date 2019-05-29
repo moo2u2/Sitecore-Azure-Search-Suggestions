@@ -2,13 +2,8 @@
 Adding Azure Search Suggestions capabilities to Sitecore
 
 This branch contains the implementation based on SXA.  See other branch for non-SXA version.
+This branch does not contain an additional (NuGet) reference to the Azure Search libraries, it makes the API calls directly, like the rest of the Sitecore implementation. 
 Unfortunately many of the Sitecore classes/methods/properties could not be overridden as they are internal or private, so numerous files are copies of the decompiled sources.  These files are commented and can hopefully be removed if the product team makes the classes/methods/properties public/protected.
-
-Also requires the default Microsoft.Spatial assembly version to be updated in your Web.config
-```<dependentAssembly>
-    <assemblyIdentity name="Microsoft.Spatial" publicKeyToken="31bf3856ad364e35" culture="neutral" xmlns="urn:schemas-microsoft-com:asm.v1" />
-    <bindingRedirect oldVersion="0.0.0.0-7.5.3.21218" newVersion="7.5.3.21218" xmlns="urn:schemas-microsoft-com:asm.v1" />
-</dependentAssembly>```
 
 `Foundation.Search.config` contains the following settings:
 * *AzureSearchSuggesterName*  name of the suggester which is created in Azure Search
