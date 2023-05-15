@@ -1,3 +1,6 @@
+_As Azure Search has been deprecated / un-supported for some time now, this repo is being archived._
+---
+
 # Sitecore-Azure-Search-Suggestions
 Adding [Azure Search Suggestions](https://docs.microsoft.com/en-us/azure/search/index-add-suggesters) capabilities to Sitecore
 
